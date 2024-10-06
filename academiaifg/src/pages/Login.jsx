@@ -13,16 +13,15 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (CPF === '' || password === '') {
+    if (CPF === '') {
       setError('CPF e Senha são obrigatórios.');
       return;
     }
-
     try {
       const response = await api.post('/api/token/', { CPF, password });
       const { access, refresh } = response.data;
       login({ CPF, access, refresh });
-      navigate('/workout');  // Redireciona para a página de treino após o login
+      navigate('/workout'); // Redireciona para a página de treino após o login
     } catch (error) {
       setError('Credenciais inválidas.');
     }
@@ -36,25 +35,14 @@ const Login = () => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className='login-container input'>
-            <input
-              type="text"
-              value={CPF}
-              onChange={(e) => setCPF(e.target.value)}
-              placeholder="CPF"
-            />
+            <input type="text" value={CPF} onChange={(e) => setCPF(e.target.value)} placeholder="CPF" />
           </div>
           <div className='login-container input'>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Senha"
-            />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" />
           </div>
           <button type="submit">Login</button>
         </form>
-        <p></p>
-        <button onClick={() => navigate('/')}>Voltar para Home</button> {/* Botão para voltar para a página inicial */}
+        <button onClick={() => navigate('/')}>Voltar para Home</button>
       </div>
     </>
   );

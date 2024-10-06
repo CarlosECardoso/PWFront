@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Workout from './pages/Workout';
 import PrivateRoute from './components/PrivateRoute';
 import MedicalRecord from './pages/MedicalRecord';
+import { useEffect } from 'react';
 import "./App.css";
 /**
  * The main App component.
@@ -23,27 +24,35 @@ import "./App.css";
  * @returns {React.ReactElement} The rendered App component.
  */
 function App() {
+  const [customers, setCustomers] = React.useState([]);
+  useEffect(() => {
+  /**
+   * Loads data from the customers API.
+   *
+   * This function fetches the customers from the API, parses the JSON response,
+   * and sets the customers state with the response data.
+   */
+    const loadData = () => {
+      
+    fetch('http://localhost:8000/api/customers')
+    .then(Response => Response.json())
+    .then(data => setCustomers(data))
+  }
+  loadData();
+
+}, []);
+
+  
   return (
+
     <div className='App'>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/MedicalRecord" element={<MedicalRecord/>} />
-        <Route path="/workout" element={
-          <PrivateRoute>
-            <Workout />
-          </PrivateRoute>
-        } /* />  
-        <Route path="/MedicalRecord" element={
-          <PrivateRoute>
-            <MedicalRecord />
-          </PrivateRoute> 
-        } />
-         Lembrar de modificar autenticação posteriormente  
-        */
-       
-      /></Routes> 
+        <Route path="/workout" element={  <Workout/> } />
+         </Routes> 
     </div>
   );
 }

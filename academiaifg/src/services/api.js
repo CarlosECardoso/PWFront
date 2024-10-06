@@ -2,7 +2,7 @@ import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000',  // URL do backend
+  baseURL: 'http://localhost:8000/api/token/',  // URL do backend
 });
 
 api.interceptors.request.use(

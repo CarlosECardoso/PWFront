@@ -11,6 +11,7 @@ const Home = () => {
       </header>
       <nav>
         <ul>
+          <li><Link to="/MedicalRecord"><button type="button">Cadastro de prontu rio</button></Link></li>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">Sobre</a></li>
           <li><a href="#contact">Contato</a></li>
@@ -22,6 +23,11 @@ const Home = () => {
         <section id="home">
           <h2>Home</h2>
           <p>Bem-vindo à nossa academia!</p>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
         </section>
         <section id="about">
           <h2>Sobre</h2>
